@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 
 const db = require("../db.js");
 const { BCRYPT_WORK_FACTOR } = require("../config");
@@ -36,8 +36,8 @@ async function commonBeforeAll() {
                ('u2', $2, 'U2F', 'U2L', 'u2@email.com')
         RETURNING username`,
       [
-        await bcrypt.hash("password1", BCRYPT_WORK_FACTOR),
-        await bcrypt.hash("password2", BCRYPT_WORK_FACTOR),
+        await bcryptjs.hash("password1", BCRYPT_WORK_FACTOR),
+        await bcryptjs.hash("password2", BCRYPT_WORK_FACTOR),
       ]);
 
   await db.query(`
